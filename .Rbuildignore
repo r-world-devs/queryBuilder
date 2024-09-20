@@ -1,0 +1,11 @@
+^renv$
+^renv\.lock$
+^.*\.Rproj$
+^\.Rproj\.user$
+examples/*
+_pkgdown.yml
+docs
+.Rprofile
+.lintr
+README.Rmd
+project_metadata.yaml

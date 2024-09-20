@@ -1,0 +1,6 @@
+title: queryBuilder
+template:
+  bootstrap: 5
+url: https://r-world-devs.github.io/queryBuilder/
+home:
+  strip_header: true

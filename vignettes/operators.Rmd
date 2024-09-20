@@ -1,0 +1,194 @@
+---
+title: "Operators"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Operators}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(queryBuilder)
+```
+
+The article describes default set of operators offered by `queryBuilder`.
+Each operator generates expression that can be use to perform various filtering operations.
+
+```{r}
+listQueryOperators()
+```
+
+### Operators viable for any type of field:
+
+**equal** - check if field elements equal the provided value
+
+- R method: `==`.
+- Sample rule: `queryRule(field = "cyl", operator = "equal", value = 1)`
+- Sample rule as expression: 
+<code>`r utils::capture.output(queryToExpr(queryRule(field = "cyl", operator = "equal", value = 4)))`</code>
+- Argument `value` is required, should be a single value.
+
+**not_equal** - check if field elements are different from the provided value
+
+- R method: `!=`.
+- Sample rule: `queryRule(field = "cyl", operator = "not_equal", value = 1)`
+- Sample rule as expression: 
+<code>`r utils::capture.output(queryToExpr(queryRule(field = "cyl", operator = "not_equal", value = 4)))`</code>
+- Argument `value` is required, should be a single value.
+
+**in** - check if field elements matches the provided set of values
+
+- R method: <code>\`%in%\`</code>.
+- Sample rule: `queryRule(field = "cyl", operator = "in", value = c(4, 6))`
+- Sample rule as expression: 
+<code>`r utils::capture.output(queryToExpr(queryRule(field = "cyl", operator = "in", value = c(4, 6))))`</code>
+- Argument `value` is required, should be a non-empty vector.
+
+**not_in** - check if field elements do not match the provided set of values
+
+- R method: <code>!\`%in%\`</code>.
+- Sample rule: `queryRule(field = "cyl", operator = "not_in", value = c(4, 6))`
+- Sample rule as expression: 
+<code style="white-space: nowrap;">!cyl %in% c(4, 6)</code>
+- Argument `value` is required, should be a non-empty vector.
+
+**is_null** - check if field elements are missing (`NA`)
+
+- R method: `is.na`.
+- Sample rule: `queryRule(field = "cyl", operator = "is_null")`
+- Sample rule as expression: 
+<code>`r utils::capture.output(queryToExpr(queryRule(field = "cyl", operator = "is_null")))`</code>
+- Argument `value` is ignored.
+
+**not_is_null** - check if field elements are different from the provided value
+
+- R method: `!is.na`.
+- Sample rule: `queryRule(field = "cyl", operator = "not_is_null")`
+- Sample rule as expression: 
+<code>`r utils::capture.output(queryToExpr(queryRule(field = "cyl", operator = "not_is_null")))`</code>
+- Argument `value` is ignored.
+
+### Operators viable for numerical and date/time based fields:
+
+**less** - check if field elements are lesser than the provided value
+
+- R method: `<`.
+- Sample rule: `queryRule(field = "cyl", operator = "less", value = 6)`
+- Sample rule as expression: 
+<code>`r utils::capture.output(queryToExpr(queryRule(field = "cyl", operator = "less", value = 6)))`</code>
+- Argument `value` is required, should be a single value.
+
+**less_or_equal** - check if field elements are lesser or equal the provided value
+
+- R method: `<=`.
+- Sample rule: `queryRule(field = "cyl", operator = "less_or_equal", value = 6)`
+- Sample rule as expression: 
+<code>`r utils::capture.output(queryToExpr(queryRule(field = "cyl", operator = "less_or_equal", value = 6)))`</code>
+- Argument `value` is required, should be a single value.
+
+**greater** - check if field elements are greater than the provided value
+
+- R method: `>`.
+- Sample rule: `queryRule(field = "cyl", operator = "greater", value = 6)`
+- Sample rule as expression: 
+<code>`r utils::capture.output(queryToExpr(queryRule(field = "cyl", operator = "greater", value = 6)))`</code>
+- Argument `value` is required, should be a single value.
+
+**greater_or_equal** - check if field elements are greater or equal the provided value
+
+- R method: `>=`.
+- Sample rule: `queryRule(field = "cyl", operator = "greater_or_equal", value = 6)`
+- Sample rule as expression: 
+<code>`r utils::capture.output(queryToExpr(queryRule(field = "cyl", operator = "greater_or_equal", value = 6)))`</code>
+- Argument `value` is required, should be a single value.
+
+**between** - check if field elements fit within the provided range (boundary excluded)
+
+- R method: `queryBuilder::in_range`.
+- Sample rule: `queryRule(field = "cyl", operator = "between", value = c(4, 8))`
+- Sample rule as expression: 
+<code style="white-space: nowrap;">`r utils::capture.output(queryToExpr(queryRule(field = "cyl", operator = "between", value = c(4, 8))))`</code>
+- Argument `value` is required, should be a non-empty vector.
+
+**not_between** - check if field elements do not match the provided set of values (boundary included)
+
+- R method: `!queryBuilder::in_range`.
+- Sample rule: `queryRule(field = "cyl", operator = "not_between", value = c(4, 8))`
+- Sample rule as expression: 
+<code style="white-space: nowrap;">`r utils::capture.output(queryToExpr(queryRule(field = "cyl", operator = "not_between", value = c(4, 8))))`</code>
+- Argument `value` is required, should be a non-empty vector.
+
+### Operators viable for character fields:
+
+**begins_with** - check if field elements start with the provided string value
+
+- R method: `startsWith`.
+- Sample rule: `queryRule(field = "Species", operator = "begins_with", value = "setos")`
+- Sample rule as expression: 
+<code style="white-space: nowrap;">startsWith(Species, \"setos\")</code>
+- Argument `value` is required, should be a single character value.
+
+**not_begins_with** - check if field elements do not start with the provided string value
+
+- R method: `!startsWith`.
+- Sample rule: `queryRule(field = "Species", operator = "not_begins_with", value = "setos")`
+- Sample rule as expression: 
+<code style="white-space: nowrap;">!startsWith(Species, \"setos\")</code>
+- Argument `value` is required, should be a single value.
+
+**contains** - check if field elements start with the provided string value
+
+- R method: `queryBuilder::in_string`.
+- Sample rule: `queryRule(field = "Species", operator = "contains", value = "setos")`
+- Sample rule as expression: 
+<code style="white-space: nowrap;">queryBuilder::in_string(Species, \"setos\")</code>
+- Argument `value` is required, should be a single character value.
+
+**not_contains** - check if field elements do not start with the provided string value
+
+- R method: `!queryBuilder::in_string`.
+- Sample rule: `queryRule(field = "Species", operator = "not_contains", value = "etos")`
+- Sample rule as expression: 
+<code style="white-space: nowrap;">!queryBuilder::in_string(Species, \"etos\")</code>
+- Argument `value` is required, should be a single value.
+
+**ends_with** - check if field elements end with the provided string value
+
+- R method: `endsWith`.
+- Sample rule: `queryRule(field = "Species", operator = "ends_with", value = "etosa")`
+- Sample rule as expression: 
+<code style="white-space: nowrap;">endsWith(Species, \"etosa\")</code>
+- Argument `value` is required, should be a single character value.
+
+**not_ends_with** - check if field elements do not end with the provided string value
+
+- R method: `!startsWith`.
+- Sample rule: `queryRule(field = "Species", operator = "not_ends_with", value = "setos")`
+- Sample rule as expression: 
+<code style="white-space: nowrap;">!endsWith(Species, \"etosa\")</code>
+- Argument `value` is required, should be a single value.
+
+**is_empty** - check if field elements are an empty string
+
+- R method: `queryBuilder::is_empty`.
+- Sample rule: `queryRule(field = "Species", operator = "is_empty")`
+- Sample rule as expression: 
+<code>`r utils::capture.output(queryToExpr(queryRule(field = "cyl", operator = "is_empty")))`</code>
+- Argument `value` is ignored.
+
+**not_is_empty** - check if field elements are not an empty string
+
+- R method: `!queryBuilder::is_empty`.
+- Sample rule: `queryRule(field = "Species", operator = "not_is_empty")`
+- Sample rule as expression: 
+<code>`r utils::capture.output(queryToExpr(queryRule(field = "cyl", operator = "not_is_empty")))`</code>
+- Argument `value` is ignored.
+
+In order to set custom operators please check `setQueryOperators()`.

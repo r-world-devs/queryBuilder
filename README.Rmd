@@ -1,0 +1,165 @@
+---
+output: github_document
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = TRUE,        
+  echo = TRUE,
+  message = TRUE,
+  warning = TRUE,
+  fig.width = 8,
+  fig.height = 6,
+  dpi = 200,
+  fig.align = "center",
+  fig.path = "man/figures/README-"
+)
+knitr::opts_chunk$set()
+library(magrittr)
+library(queryBuilder)
+set.seed(123)
+options(tibble.width = Inf)
+mtcars <- tibble::as.tibble(mtcars)
+options("tibble.print_max" = 5)
+options("tibble.print_min" = 5)
+pkg_version <- read.dcf("DESCRIPTION", fields = "Version")[1, 1]
+```
+
+# queryBuilder
+
+[![version](https://img.shields.io/static/v1.svg?label=github.com&message=v.`r I(pkg_version)`&color=ff69b4)](https://r-world-devs.github.io/queryBuilder/)
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+
+## Overview
+
+`queryBuilder` provides syntax for defining complex filtering expressions programmatically.  
+Filtering query, built as a nested list configuration, can be easily stored in other formats like 'YAML' or 'JSON'.
+The package also allows to convert such configuration to a valid expression that can be applied with 
+popular 'dplyr' package operations.
+
+### Rules
+
+The package allows to construct queries using **rules** (`queryRule`) that are filtering operations performed on a single query.  
+A single rule consists of:
+
+- `field` - name of the variable/column to be filtered,
+- `operator` - name of the filtering function to apply to the `field`,
+- `value` - non-mandatory value precising the filtering by the operator.
+
+As an example:
+
+```{r, eval = FALSE}
+queryRule(
+  field = "am",
+  operator = "equal",
+  value = 1
+)
+```
+
+by the default package configuration, is interpreted as `am == 1` expression.
+
+In order to convert a rule to expression use `queryToExpr` function:
+
+```{r}
+my_query <- queryRule(
+  field = "am",
+  operator = "equal",
+  value = 1
+)
+queryToExpr(my_query)
+```
+
+Such expression can be then used by `dplyr::filter`:
+
+```{r}
+mtcars %>% dplyr::filter(!!queryToExpr(my_query))
+```
+
+To see a full list of supported operators (along with corresponding R functions) check: 
+```{r}
+listQueryOperators()
+```
+
+More detailed description of supported operators can be found at `vignette("operators")`.
+
+You can also define custom operators with `setQueryOperators()`.
+
+### Groups
+
+To build more complex queries `queryBuilder` introduces **groups** (`queryGroup`) that allow to combine multiple rules with the specified **condition** (logical operator).
+
+The below query:
+
+```{r}
+my_query <- queryGroup(
+  condition = "AND",
+  queryRule(
+    field = "am",
+    operator = "equal",
+    value = 1
+  ),
+  queryRule(
+    field = "vs",
+    operator = "equal",
+    value = 0
+  )
+)
+```
+
+uses `"AND"` condition to combine the two rules which is by default interpreted as `&` logical operator:
+
+```{r}
+queryToExpr(my_query)
+```
+
+`queryGroup` can also combine other groups which enables to build even more advanced queries:
+
+```{r}
+my_query <- queryGroup(
+  condition = "AND",
+  queryRule("qsec", "greater", 20),
+  queryGroup(
+    condition = "OR",
+    queryRule(
+      field = "am",
+      operator = "equal",
+      value = 1
+    ),
+    queryRule(
+      field = "vs",
+      operator = "equal",
+      value = 0
+    )
+  )
+)
+queryToExpr(my_query)
+```
+
+By default the packages supports two conditions `AND` (`&`) and `OR` (`|`) but you can add your custom one with `setQueryConditions()`.
+
+### Relation to [jQuery-QueryBuilder](https://github.com/mistic100/jQuery-QueryBuilder)
+
+The introduced syntax (rules, groups, operators and conditions) is based on query constructing rules as offered by [jQuery-QueryBuilder](https://github.com/mistic100/jQuery-QueryBuilder) JS framework.
+
+The `queryBuilder` package is intended to be used as a backend for the `shinyQueryBuilder` package that will allow users to use `jQuery-QueryBuilder` in Shiny.
+
+## Installation
+
+```{r, eval = FALSE}
+# CRAN version
+install.packages("queryBuilder")
+
+# Latest development version
+remotes::install_github("https://github.com/r-world-devs/queryBuilder")
+```
+
+## Acknowledgement
+
+Special thanks to [Kamil Wais](mailto:kamil.wais@gmail.com), [Adam Foryś](mailto:adam.forys@gmail.com), [Maciej Banaś](mailto:banasmaciek@gmail.com),[Karolina Marcinkowska](mailto:karolina_marcinkowska@onet.pl) and [Kamil Koziej](mailto:koziej.k@gmail.com) for the support in the package development and thorough testing of its functionality.
+
+## Getting help
+
+In a case you found any bugs, have feature request or general question please file an issue at the package [Github](https://github.com/r-world-devs/queryBuilder/issues).
+You may also contact the package author directly via email at [krystian8207@gmail.com](mailto:krystian8207@gmail.com).
