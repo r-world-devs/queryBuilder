@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   operators: operators.html
-last_built: 2024-09-20T15:35Z
+last_built: 2024-09-20T18:22Z
 urls:
   reference: https://r-world-devs.github.io/queryBuilder/reference
   article: https://r-world-devs.github.io/queryBuilder/articles
