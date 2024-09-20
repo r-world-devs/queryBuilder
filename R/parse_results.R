@@ -36,8 +36,7 @@ rule_to_expr <- function(rule, operators, keep_na = FALSE) {
   operator <- operators[[rule$operator]]
   if (is.null(operator)) {
     err_msg(
-      "Operator {sQuote(rule$operator)} is not defined. Use {sQuote('setQueryOperators')} to define it.",
-      .envir = list(rule = rule)
+      "Operator {sQuote(rule$operator)} is not defined. Use {sQuote('setQueryOperators')} to define it."
     )
   }
   nvals <- length(rule$value)

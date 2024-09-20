@@ -21,10 +21,11 @@ lget_attr <- function(list_obj, attribute) {
 #'
 #' @param msg Character string interpreted by \link[glue]{glue}.
 #' @param ... Extra arguments passed to \link[glue]{glue}.
+#' @param .envir Environment to evaluate each expression in, passed to \link[glue]{glue}.
 #'
 #' @return Executed error with interpolated message.
-err_msg <- function(msg, ...) {
-  stop(glue::glue(msg, ...), call. = FALSE)
+err_msg <- function(msg, ..., .envir = parent.frame()) {
+  stop(glue::glue(msg, ..., .envir = .envir), call. = FALSE)
 }
 
 #' Combine two lists

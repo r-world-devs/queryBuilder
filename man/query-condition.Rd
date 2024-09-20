@@ -35,12 +35,12 @@ Condition is two-argument function such as `|` or `&` used to combine pair of ru
 }
 \details{
 \itemize{
-  \item{\code{queryCondition}}{ defines condition method.}
-  \item{\code{setQueryConditions}}{
+  \item{\code{queryCondition}: defines condition method.}
+  \item{\code{setQueryConditions}:
     is used to register the defined conditions in the default or custom \link{queryBuilderConfigClass} object.
   }
-  \item{\code{listQueryConditions}}{ returns list of registered conditions.}
-  \item{\code{default_conditions}}{ an object storing default definitions for conditions.}
+  \item{\code{listQueryConditions}: returns list of registered conditions.}
+  \item{\code{default_conditions}: an object storing default definitions for conditions.}
 }
 }
 \examples{

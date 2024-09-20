@@ -111,3 +111,4 @@ test_that("queryToExpr converts queries to expression as intended", {
 
   queryBuilderConfig$reset()
 })
+

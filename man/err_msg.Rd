@@ -4,12 +4,14 @@
 \alias{err_msg}
 \title{Generate error message}
 \usage{
-err_msg(msg, ...)
+err_msg(msg, ..., .envir = parent.frame())
 }
 \arguments{
 \item{msg}{Character string interpreted by \link[glue]{glue}.}
 
 \item{...}{Extra arguments passed to \link[glue]{glue}.}
+
+\item{.envir}{Environment to evaluate each expression in, passed to \link[glue]{glue}.}
 }
 \value{
 Executed error with interpolated message.

@@ -7,7 +7,7 @@
 ## Overview
 
 `queryBuilder` provides syntax for defining complex filtering
-expressions programmatically.  
+expressions in a programmatic way.  
 Filtering query, built as a nested list configuration, can be easily
 stored in other formats like ‘YAML’ or ‘JSON’. The package also allows
 to convert such configuration to a valid expression that can be applied

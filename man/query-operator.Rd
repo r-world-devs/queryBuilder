@@ -48,12 +48,12 @@ Operators are stored as \link{quote}s, that are further interpreted while conver
 filtering expression.
 
 \itemize{
-  \item{\code{queryOperator}}{ defines a custom operator that can be used in generated query.}
-  \item{\code{setQueryOperators}}{
+  \item{\code{queryOperator}: defines a custom operator that can be used in generated query.}
+  \item{\code{setQueryOperators}:
     is used to register the defined operators in the default or custom \link{queryBuilderConfigClass} object.
   }
-  \item{\code{listQueryOperators}}{ allows to list available operators for the specific column type.}
-  \item{\code{default_operators}}{ an object storing default definitions for operators.}
+  \item{\code{listQueryOperators}: allows to list available operators for the specific column type.}
+  \item{\code{default_operators}: an object storing default definitions for operators.}
 }
 }
 \examples{
