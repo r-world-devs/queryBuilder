@@ -114,6 +114,7 @@ query_to_expr_bare <- function(query, operators, conditions, keep_na) {
 #' queryToExpr(query)
 #' dplyr::filter(iris, !!queryToExpr(query))
 #'
+#' @return Object of class 'call'. A filtering expression that can be passed to 'dplyr'-based filtering methods.
 #' @export
 queryToExpr <- function(query, keep_na = FALSE, .queryBuilderConfig = queryBuilderConfig) {
   operators <- .queryBuilderConfig$get_from_private(name = "operators")

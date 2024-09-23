@@ -9,6 +9,9 @@ is_empty(x)
 \arguments{
 \item{x}{String value.}
 }
+\value{
+A logical vector indicating which elements equal \code{""}.
+}
 \description{
 Compare the string to empty value
 }

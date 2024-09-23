@@ -13,6 +13,9 @@ in_string(x, pattern, ...)
 
 \item{...}{Extra arguments passed to \link{grepl}.}
 }
+\value{
+A logical vector indicating which elements of \code{x} are matching the provided \code{pattern}.
+}
 \description{
 Check if character value matches the provided pattern
 }

@@ -13,6 +13,9 @@ queryToExpr(query, keep_na = FALSE, .queryBuilderConfig = queryBuilderConfig)
 
 \item{.queryBuilderConfig}{R6 class object storing query configuration. See \link{queryBuilderConfigClass}.}
 }
+\value{
+Object of class 'call'. A filtering expression that can be passed to 'dplyr'-based filtering methods.
+}
 \description{
 The function takes a list of condition rules provided by the widget (\code{input[[<widget-name>]]}) and
 returns valid R expression that can be used for example in \link[dplyr]{filter} function.

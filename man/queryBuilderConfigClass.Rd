@@ -2,11 +2,14 @@
 % Please edit documentation in R/config.R
 \name{queryBuilderConfigClass}
 \alias{queryBuilderConfigClass}
-\title{R6 class representing queryBuilderConfig object.}
+\title{R6 class representing 'queryBuilderConfig' object.}
+\value{
+R6 Class constructor for query configuration (operators, conditions and methods for managing the objects).
+}
 \description{
-R6 class representing queryBuilderConfig object.
+R6 class representing 'queryBuilderConfig' object.
 
-R6 class representing queryBuilderConfig object.
+R6 class representing 'queryBuilderConfig' object.
 }
 \details{
 The object is responsible for storing definitions for operators and conditions
@@ -57,7 +60,7 @@ The object of class `queryBuilderConfig`.
 \if{html}{\out{<a id="method-queryBuilderConfig-add"></a>}}
 \if{latex}{\out{\hypertarget{method-queryBuilderConfig-add}{}}}
 \subsection{Method \code{add()}}{
-Add conditions and conditions to queryBuilderConfig object.
+Add conditions and conditions to 'queryBuilderConfig' object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{queryBuilderConfigClass$add(conditions = NULL, operators = NULL)}\if{html}{\out{</div>}}
 }
@@ -76,7 +79,7 @@ Add conditions and conditions to queryBuilderConfig object.
 \if{html}{\out{<a id="method-queryBuilderConfig-remove"></a>}}
 \if{latex}{\out{\hypertarget{method-queryBuilderConfig-remove}{}}}
 \subsection{Method \code{remove()}}{
-Remove conditions or operators from queryBuilderConfig object.
+Remove conditions or operators from 'queryBuilderConfig' object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{queryBuilderConfigClass$remove(conditions_id = NULL, operators_id = NULL)}\if{html}{\out{</div>}}
 }
@@ -95,7 +98,7 @@ Remove conditions or operators from queryBuilderConfig object.
 \if{html}{\out{<a id="method-queryBuilderConfig-get_from_private"></a>}}
 \if{latex}{\out{\hypertarget{method-queryBuilderConfig-get_from_private}{}}}
 \subsection{Method \code{get_from_private()}}{
-Get private elements from queryBuilderConfig object.
+Get private elements from 'queryBuilderConfig' object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{queryBuilderConfigClass$get_from_private(name)}\if{html}{\out{</div>}}
 }
@@ -112,7 +115,7 @@ Get private elements from queryBuilderConfig object.
 \if{html}{\out{<a id="method-queryBuilderConfig-set_to_private"></a>}}
 \if{latex}{\out{\hypertarget{method-queryBuilderConfig-set_to_private}{}}}
 \subsection{Method \code{set_to_private()}}{
-Set private elements to queryBuilderConfig object.
+Set private elements to 'queryBuilderConfig' object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{queryBuilderConfigClass$set_to_private(name, value)}\if{html}{\out{</div>}}
 }
@@ -131,7 +134,7 @@ Set private elements to queryBuilderConfig object.
 \if{html}{\out{<a id="method-queryBuilderConfig-reset"></a>}}
 \if{latex}{\out{\hypertarget{method-queryBuilderConfig-reset}{}}}
 \subsection{Method \code{reset()}}{
-Restore default conditions and conditions of queryBuilderConfig object and clear out remaining pprivate objects.
+Restore default conditions and conditions of 'queryBuilderConfig' object and clear out remaining private objects.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{queryBuilderConfigClass$reset()}\if{html}{\out{</div>}}
 }

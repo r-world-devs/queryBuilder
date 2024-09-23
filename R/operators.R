@@ -89,6 +89,7 @@ listQueryOperators <- function(.queryBuilderConfig = queryBuilderConfig, print =
 #'
 #' @param x Numeric value.
 #' @param range Vector of length 2, storing range change limits.
+#' @return A logical vector indicating which elements of \code{x} fit into the specified \code{range}.
 #' @export
 in_range <- function(x, range) {
   x > range[1] & x < range[2]
@@ -99,6 +100,7 @@ in_range <- function(x, range) {
 #' @param x String value.
 #' @param pattern Pattern that should be matched to \code{x}.
 #' @param ... Extra arguments passed to \link{grepl}.
+#' @return A logical vector indicating which elements of \code{x} are matching the provided \code{pattern}.
 #' @export
 in_string <- function(x, pattern, ...) {
   grepl(pattern, x, ...)
@@ -107,6 +109,7 @@ in_string <- function(x, pattern, ...) {
 #' Compare the string to empty value
 #'
 #' @param x String value.
+#' @return A logical vector indicating which elements equal \code{""}.
 #' @export
 is_empty <- function(x) {
   x == ""

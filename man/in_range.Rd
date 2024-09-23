@@ -11,6 +11,9 @@ in_range(x, range)
 
 \item{range}{Vector of length 2, storing range change limits.}
 }
+\value{
+A logical vector indicating which elements of \code{x} fit into the specified \code{range}.
+}
 \description{
 Check if value fits to a range
 }

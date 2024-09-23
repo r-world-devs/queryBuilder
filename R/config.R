@@ -30,7 +30,7 @@ default_conditions <- list(
   "OR" = queryCondition(`|`)
 )
 
-#' R6 class representing queryBuilderConfig object.
+#' R6 class representing 'queryBuilderConfig' object.
 #'
 #' The object is responsible for storing definitions for operators and conditions
 #' that are used to generate query expression.
@@ -38,6 +38,7 @@ default_conditions <- list(
 #'
 #' @param conditions Conditions.
 #' @param operators Operators.
+#' @return R6 Class constructor for query configuration (operators, conditions and methods for managing the objects).
 #' @export
 queryBuilderConfigClass <- R6::R6Class(
   "queryBuilderConfig",
@@ -52,7 +53,7 @@ queryBuilderConfigClass <- R6::R6Class(
       private$operators <- operators
     },
     #' @description
-    #' Add conditions and conditions to queryBuilderConfig object.
+    #' Add conditions and conditions to 'queryBuilderConfig' object.
     add = function(conditions = NULL, operators = NULL) {
       if (!is.null(operators)) {
         private$operators <- attach_to_list(private$operators, operators)
@@ -62,7 +63,7 @@ queryBuilderConfigClass <- R6::R6Class(
       }
     },
     #' @description
-    #' Remove conditions or operators from queryBuilderConfig object.
+    #' Remove conditions or operators from 'queryBuilderConfig' object.
     #' @param conditions_id Id of conditions to remove.
     #' @param operators_id Id of operators to remove.
     remove = function(conditions_id = NULL, operators_id = NULL) {
@@ -70,7 +71,7 @@ queryBuilderConfigClass <- R6::R6Class(
       private$conditions <- remove_by_name(private$conditions, conditions_id)
     },
     #' @description
-    #' Get private elements from queryBuilderConfig object.
+    #' Get private elements from 'queryBuilderConfig' object.
     #' @param name Name of the element to get.
     get_from_private = function(name) {
       if (missing(name)) {
@@ -79,7 +80,7 @@ queryBuilderConfigClass <- R6::R6Class(
       return(private[[name]])
     },
     #' @description
-    #' Set private elements to queryBuilderConfig object.
+    #' Set private elements to 'queryBuilderConfig' object.
     #' @param name Name of the element to set.
     #' @param value New element value.
     set_to_private = function(name, value) {
@@ -87,7 +88,7 @@ queryBuilderConfigClass <- R6::R6Class(
       return(invisible(NULL))
     },
     #' @description
-    #' Restore default conditions and conditions of queryBuilderConfig object and clear out remaining pprivate objects.
+    #' Restore default conditions and conditions of 'queryBuilderConfig' object and clear out remaining private objects.
     reset = function() {
       private$conditions <- default_conditions
       private$operators <- default_operators

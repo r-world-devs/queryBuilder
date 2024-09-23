@@ -15,8 +15,12 @@ Wais
 YAML
 YAML’
 cloneable
+cyl
 dplyr
 dplyr’
+endsWith
+etos
+etosa
 github
 grepl
 https
@@ -33,4 +37,6 @@ queryOperators
 queryRule
 setQueryConditions
 setQueryOperators
+setos
+startsWith
 svg
